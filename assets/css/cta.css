@@ -1,3 +1,7 @@
+/* ===========================
+   CTA
+=========================== */
+
 .cta{
 
     padding:140px 0;
@@ -32,7 +36,14 @@
 
     overflow:hidden;
 
+    box-sizing:border-box;
+
 }
+
+
+/* ===========================
+   EFEITOS DE FUNDO
+=========================== */
 
 .cta-box::before{
 
@@ -53,6 +64,8 @@
     top:-220px;
 
     left:-180px;
+
+    pointer-events:none;
 
 }
 
@@ -76,13 +89,22 @@
 
     bottom:-180px;
 
+    pointer-events:none;
+
 }
+
+
+/* ===========================
+   CONTEÚDO
+=========================== */
 
 .cta-content{
 
     position:relative;
 
     z-index:2;
+
+    min-width:0;
 
 }
 
@@ -110,6 +132,11 @@
 
 }
 
+
+/* ===========================
+   BOTÕES
+=========================== */
+
 .cta-buttons{
 
     display:flex;
@@ -118,7 +145,20 @@
 
     margin-top:40px;
 
+    flex-wrap:wrap;
+
 }
+
+.cta-buttons a{
+
+    box-sizing:border-box;
+
+}
+
+
+/* ===========================
+   IMAGEM
+=========================== */
 
 .cta-image{
 
@@ -130,12 +170,247 @@
 
     justify-content:center;
 
+    align-items:center;
+
+    width:100%;
+
 }
 
 .cta-image img{
 
+    display:block;
+
     width:350px;
 
+    max-width:100%;
+
+    height:auto;
+
     animation:float 6s ease-in-out infinite;
+
+}
+
+
+/* ===========================
+   TABLETS
+=========================== */
+
+@media (max-width:960px){
+
+    .cta{
+
+        padding:100px 0;
+
+    }
+
+    .cta-box{
+
+        grid-template-columns:1fr;
+
+        gap:50px;
+
+        padding:60px 50px;
+
+        text-align:center;
+
+    }
+
+    .cta-content p{
+
+        margin-left:auto;
+
+        margin-right:auto;
+
+    }
+
+    .cta-buttons{
+
+        justify-content:center;
+
+    }
+
+    .cta-image img{
+
+        width:300px;
+
+        max-width:80%;
+
+    }
+
+}
+
+
+/* ===========================
+   CELULARES
+=========================== */
+
+@media (max-width:650px){
+
+    .cta{
+
+        padding:80px 0;
+
+        width:100%;
+
+    }
+
+    .cta-box{
+
+        display:flex;
+
+        flex-direction:column;
+
+        width:100%;
+
+        max-width:100%;
+
+        padding:50px 25px;
+
+        gap:40px;
+
+        border-radius:25px;
+
+        text-align:center;
+
+        box-sizing:border-box;
+
+    }
+
+    .cta-content{
+
+        width:100%;
+
+        max-width:100%;
+
+    }
+
+    .cta-content h2{
+
+        font-size:clamp(2rem, 8vw, 2.6rem);
+
+        line-height:1.2;
+
+        margin-bottom:25px;
+
+    }
+
+    .cta-content p{
+
+        width:100%;
+
+        max-width:100%;
+
+        font-size:1rem;
+
+        line-height:1.8;
+
+        margin-left:auto;
+
+        margin-right:auto;
+
+    }
+
+    .cta-buttons{
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:center;
+
+        width:100%;
+
+        gap:15px;
+
+        margin-top:30px;
+
+    }
+
+    .cta-buttons a{
+
+        width:100%;
+
+        max-width:280px;
+
+        min-height:55px;
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+        text-align:center;
+
+        box-sizing:border-box;
+
+    }
+
+    .cta-image{
+
+        width:100%;
+
+        margin-top:0;
+
+    }
+
+    .cta-image img{
+
+        width:220px;
+
+        max-width:80%;
+
+        height:auto;
+
+    }
+
+}
+
+
+/* ===========================
+   CELULARES PEQUENOS
+=========================== */
+
+@media (max-width:400px){
+
+    .cta{
+
+        padding:60px 0;
+
+    }
+
+    .cta-box{
+
+        padding:40px 20px;
+
+        border-radius:20px;
+
+    }
+
+    .cta-content h2{
+
+        font-size:1.9rem;
+
+    }
+
+    .cta-content p{
+
+        font-size:.95rem;
+
+        line-height:1.7;
+
+    }
+
+    .cta-buttons a{
+
+        max-width:260px;
+
+    }
+
+    .cta-image img{
+
+        width:190px;
+
+    }
 
 }
