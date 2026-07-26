@@ -1,127 +1,110 @@
-.navbar{
+/* ===========================
+   NAVBAR
+=========================== */
 
-    height:90px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
+.navbar {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
 }
 
-.logo img{
+/* ===========================
+   LOGO
+=========================== */
 
-    width:170px;
-
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    flex-shrink: 0;
 }
 
-.nav ul{
-
-    display:flex;
-
-    gap:40px;
-
+.logo img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
 }
 
-.nav a{
-
-    color:var(--gray);
-
-    transition:.3s;
-
+.logo-text {
+    display: flex;
+    flex-direction: column;
 }
 
-.nav a:hover{
-
-    color:var(--white);
-
+.logo-text h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.6rem;
+    color: #ffffff;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
-.btn-header{
-
-    padding:14px 24px;
-
-    border-radius:50px;
-
-    background:var(--gradient);
-
-    color:#000;
-
-    font-weight:700;
-
-    transition:.3s;
-
+.logo-text span {
+    font-size: .78rem;
+    color: #8f9db0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-.btn-header:hover{
 
-    transform:translateY(-3px);
+/* ===========================
+   MENU
+=========================== */
 
+.nav {
+    margin-left: auto;
 }
+
+.nav ul {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav a {
+    color: var(--gray);
+    transition: .3s;
+}
+
+.nav a:hover {
+    color: var(--white);
+}
+
+
+/* ===========================
+   BOTÃO SOLICITAR ORÇAMENTO
+=========================== */
+
+.btn-navbar {
+    margin-left: 20px;
+    padding: 14px 24px;
+    border-radius: 50px;
+    background: var(--gradient);
+    color: #000;
+    font-weight: 700;
+    white-space: nowrap;
+    text-decoration: none;
+    transition: .3s;
+    flex-shrink: 0;
+}
+
+.btn-navbar:hover {
+    transform: translateY(-3px);
+}
+
+
+/* ===========================
+   FOOTER
+=========================== */
 
 footer {
-  margin-top: 60px;
-  padding: 30px;
-  text-align: center;
-  background: #050505;
-  opacity: 0.7;
-}
-
-.logo{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:15px;
-
-    text-decoration:none;
-
-}
-
-.logo img{
-
-    width:55px;
-
-    height:55px;
-
-    object-fit:contain;
-
-}
-
-.logo-text{
-
-    display:flex;
-
-    flex-direction:column;
-
-}
-
-.logo-text h2{
-
-    font-family:"Space Grotesk", sans-serif;
-
-    font-size:1.6rem;
-
-    color:#ffffff;
-
-    margin:0;
-
-    font-weight:700;
-
-    letter-spacing:1px;
-
-}
-
-.logo-text span{
-
-    font-size:.78rem;
-
-    color:#8f9db0;
-
-    letter-spacing:1px;
-
-    text-transform:uppercase;
-
+    margin-top: 60px;
+    padding: 30px;
+    text-align: center;
+    background: #050505;
+    opacity: .7;
 }
