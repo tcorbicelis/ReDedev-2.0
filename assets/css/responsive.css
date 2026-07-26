@@ -69,4 +69,26 @@ display:none;
     grid-template-columns:1fr;
 
 }
+
+.tech-grid{
+
+    grid-template-columns:repeat(2,1fr);
+
+}
+}
+
+@media(max-width:650px){
+
+.tech-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.timeline{
+
+    grid-template-columns:1fr;
+
+}
+
 }
