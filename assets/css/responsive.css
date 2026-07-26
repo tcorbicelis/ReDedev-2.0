@@ -1,0 +1,72 @@
+@media(max-width:960px){
+
+.hero-content{
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+}
+
+.hero-image{
+
+order:-1;
+
+}
+
+.hero-buttons{
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+}
+
+.hero h1{
+
+font-size:3rem;
+
+}
+
+.hero-image img{
+
+width:320px;
+
+}
+
+.nav{
+
+display:none;
+
+}
+
+.btn-header{
+
+display:none;
+
+}
+
+.about-content{
+
+    grid-template-columns:1fr;
+
+}
+
+.about-cards{
+
+    grid-template-columns:1fr;
+
+}
+
+.about-image{
+
+    order:-1;
+
+}
+
+.services-grid{
+
+    grid-template-columns:1fr;
+
+}
+}

@@ -1,0 +1,61 @@
+.navbar{
+
+    height:90px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.logo img{
+
+    width:170px;
+
+}
+
+.nav ul{
+
+    display:flex;
+
+    gap:40px;
+
+}
+
+.nav a{
+
+    color:var(--gray);
+
+    transition:.3s;
+
+}
+
+.nav a:hover{
+
+    color:var(--white);
+
+}
+
+.btn-header{
+
+    padding:14px 24px;
+
+    border-radius:50px;
+
+    background:var(--gradient);
+
+    color:#000;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.btn-header:hover{
+
+    transform:translateY(-3px);
+
+}

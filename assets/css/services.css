@@ -1,0 +1,117 @@
+.services{
+
+    position:relative;
+
+}
+
+.services-grid{
+
+    margin-top:70px;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:30px;
+
+}
+
+.service-card{
+
+    position:relative;
+
+    padding:40px;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    overflow:hidden;
+
+    transition:.35s;
+
+    backdrop-filter:blur(20px);
+
+}
+
+.service-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:4px;
+
+    background:var(--gradient);
+
+    transform:scaleX(0);
+
+    transform-origin:left;
+
+    transition:.35s;
+
+}
+
+.service-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:rgba(32,196,255,.25);
+
+    box-shadow:0 25px 60px rgba(32,196,255,.15);
+
+}
+
+.service-card:hover::before{
+
+    transform:scaleX(1);
+
+}
+
+.service-icon{
+
+    width:70px;
+
+    height:70px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:18px;
+
+    background:rgba(32,196,255,.08);
+
+    font-size:2rem;
+
+    margin-bottom:25px;
+
+}
+
+.service-card h3{
+
+    font-family:"Space Grotesk";
+
+    margin-bottom:15px;
+
+    font-size:1.35rem;
+
+}
+
+.service-card p{
+
+    color:var(--gray);
+
+    line-height:1.8;
+
+}

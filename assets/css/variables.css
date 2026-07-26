@@ -1,0 +1,25 @@
+:root{
+
+    --background:#05070A;
+
+    --surface:#0D1117;
+
+    --surface-light:#161B22;
+
+    --primary:#20C4FF;
+
+    --secondary:#58F29B;
+
+    --white:#F5F7FA;
+
+    --gray:#B6C2CF;
+
+    --border:rgba(255,255,255,.08);
+
+    --gradient:linear-gradient(
+        90deg,
+        #20C4FF,
+        #58F29B
+    );
+
+}
