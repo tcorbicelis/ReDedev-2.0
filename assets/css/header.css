@@ -59,3 +59,11 @@
     transform:translateY(-3px);
 
 }
+
+footer {
+  margin-top: 60px;
+  padding: 30px;
+  text-align: center;
+  background: #050505;
+  opacity: 0.7;
+}
