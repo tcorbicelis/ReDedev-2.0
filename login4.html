@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SoundLab Academy | Acesso</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(104, 64, 255, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 80%,
+                    rgba(0, 202, 255, 0.12),
+                    transparent 30%
+                ),
+                #070711;
+
+            color: white;
+        }
+
+        /* ==============================
+           BACKGROUND
+        ============================== */
+
+        .background-note {
+            position: absolute;
+            color: rgba(255,255,255,0.035);
+            font-size: 180px;
+            pointer-events: none;
+        }
+
+        .note-1 {
+            top: -40px;
+            left: 5%;
+            transform: rotate(-15deg);
+        }
+
+        .note-2 {
+            bottom: -80px;
+            right: 7%;
+            transform: rotate(15deg);
+        }
+
+
+        /* ==============================
+           CONTAINER PRINCIPAL
+        ============================== */
+
+        .player {
+            position: relative;
+            z-index: 2;
+
+            width: 950px;
+            min-height: 570px;
+
+            display: grid;
+            grid-template-columns: 42% 58%;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 28px;
+
+            background: rgba(13,13,25,0.92);
+
+            box-shadow:
+                0 30px 100px rgba(0,0,0,0.55),
+                0 0 80px rgba(101,66,255,0.08);
+        }
+
+
+        /* ==============================
+           LADO DO ÁLBUM
+        ============================== */
+
+        .album {
+            position: relative;
+
+            padding: 35px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #342070,
+                    #121020
+                );
+        }
+
+        .album::before {
+            content: "";
+
+            position: absolute;
+
+            width: 350px;
+            height: 350px;
+
+            border-radius: 50%;
+
+            right: -120px;
+            top: -80px;
+
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .album::after {
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            border-radius: 50%;
+
+            right: -70px;
+            top: -30px;
+
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .brand {
+            position: relative;
+            z-index: 2;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            letter-spacing: 3px;
+        }
+
+        .brand span {
+            color: #a979ff;
+        }
+
+
+        /* CAPA */
+
+        .album-cover {
+            position: relative;
+            z-index: 2;
+
+            width: 245px;
+            height: 245px;
+
+            margin: auto;
+
+            border-radius: 18px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #bd8aff 0%,
+                    #6940c8 35%,
+                    #1b1235 70%
+                );
+
+            box-shadow:
+                0 25px 50px rgba(0,0,0,0.35);
+        }
+
+        .vinyl {
+            width: 155px;
+            height: 155px;
+
+            border-radius: 50%;
+
+            background:
+                repeating-radial-gradient(
+                    circle,
+                    #08080c 0px,
+                    #08080c 4px,
+                    #19191e 5px,
+                    #08080c 7px
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            box-shadow:
+                0 0 30px rgba(0,0,0,0.5);
+        }
+
+        .vinyl-center {
+            width: 45px;
+            height: 45px;
+
+            border-radius: 50%;
+
+            background: #9c68ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 16px;
+        }
+
+
+        /* TEXTO DO ÁLBUM */
+
+        .album-info {
+            position: relative;
+            z-index: 2;
+        }
+
+        .album-info small {
+            color: #bba8d9;
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+        }
+
+        .album-info h1 {
+            margin-top: 7px;
+
+            font-size: 26px;
+        }
+
+        .album-info p {
+            margin-top: 5px;
+
+            color: #a49bb6;
+
+            font-size: 12px;
+        }
+
+
+        /* ==============================
+           ÁREA DE LOGIN
+        ============================== */
+
+        .access {
+            padding: 55px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            background: #0d0d18;
+        }
+
+        .access-header {
+            margin-bottom: 30px;
+        }
+
+        .access-header small {
+            color: #9c68ff;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 3px;
+        }
+
+        .access-header h2 {
+            margin-top: 10px;
+
+            font-size: 31px;
+        }
+
+        .access-header p {
+            margin-top: 8px;
+
+            color: #777489;
+
+            font-size: 13px;
+        }
+
+
+        /* ==============================
+           SELEÇÃO
+        ============================== */
+
+        .account-type {
+            display: flex;
+
+            gap: 8px;
+
+            margin-bottom: 20px;
+        }
+
+        .account-type label {
+            flex: 1;
+
+            cursor: pointer;
+        }
+
+        .account-type input {
+            display: none;
+        }
+
+        .type {
+            display: block;
+
+            padding: 11px;
+
+            text-align: center;
+
+            border: 1px solid #272435;
+
+            border-radius: 8px;
+
+            color: #716b80;
+
+            font-size: 11px;
+
+            transition: 0.3s;
+        }
+
+        .account-type input:checked + .type {
+            border-color: #9c68ff;
+
+            color: #c29eff;
+
+            background:
+                rgba(156,104,255,0.08);
+        }
+
+
+        /* ==============================
+           INPUTS
+        ============================== */
+
+        .input {
+            margin-bottom: 17px;
+        }
+
+        .input label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #a8a1b3;
+
+            font-size: 11px;
+        }
+
+        .input input {
+            width: 100%;
+
+            padding: 14px 15px;
+
+            border: 1px solid #272435;
+
+            border-radius: 8px;
+
+            outline: none;
+
+            background: #13121f;
+
+            color: white;
+
+            font-size: 13px;
+
+            transition: 0.3s;
+        }
+
+        .input input:focus {
+            border-color: #9c68ff;
+
+            box-shadow:
+                0 0 0 3px rgba(156,104,255,0.07);
+        }
+
+
+        /* ==============================
+           OPÇÕES
+        ============================== */
+
+        .options {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin: 3px 0 22px;
+
+            font-size: 10px;
+        }
+
+        .remember {
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color: #6d6879;
+        }
+
+        .remember input {
+            accent-color: #9c68ff;
+        }
+
+        .forgot {
+            color: #9c68ff;
+
+            text-decoration: none;
+        }
+
+
+        /* ==============================
+           BOTÃO
+        ============================== */
+
+        .enter {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 1.5px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #7440d1,
+                    #a568ff
+                );
+
+            box-shadow:
+                0 10px 25px rgba(121,70,220,0.2);
+
+            transition: 0.3s;
+        }
+
+        .enter:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 30px rgba(121,70,220,0.35);
+        }
+
+
+        /* ==============================
+           ONDAS
+        ============================== */
+
+        .wave {
+            height: 25px;
+
+            margin-top: 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 4px;
+        }
+
+        .bar {
+            width: 3px;
+
+            border-radius: 5px;
+
+            background: #7440d1;
+
+            animation: sound 1s infinite ease-in-out;
+        }
+
+        .bar:nth-child(1) { height: 8px; animation-delay: .1s; }
+        .bar:nth-child(2) { height: 17px; animation-delay: .2s; }
+        .bar:nth-child(3) { height: 12px; animation-delay: .3s; }
+        .bar:nth-child(4) { height: 23px; animation-delay: .4s; }
+        .bar:nth-child(5) { height: 14px; animation-delay: .5s; }
+        .bar:nth-child(6) { height: 20px; animation-delay: .6s; }
+        .bar:nth-child(7) { height: 10px; animation-delay: .7s; }
+        .bar:nth-child(8) { height: 18px; animation-delay: .8s; }
+        .bar:nth-child(9) { height: 7px; animation-delay: .9s; }
+
+        @keyframes sound {
+
+            50% {
+                transform: scaleY(0.35);
+            }
+
+        }
+
+
+        /* ==============================
+           MENSAGEM
+        ============================== */
+
+        .message {
+            height: 18px;
+
+            margin-top: 10px;
+
+            text-align: center;
+
+            font-size: 11px;
+        }
+
+        .footer {
+            margin-top: 20px;
+
+            text-align: center;
+
+            color: #403c4c;
+
+            font-size: 9px;
+        }
+
+
+        /* ==============================
+           RESPONSIVO
+        ============================== */
+
+        @media (max-width: 850px) {
+
+            body {
+                padding: 25px;
+
+                overflow: auto;
+            }
+
+            .player {
+                width: 100%;
+
+                grid-template-columns: 1fr;
+            }
+
+            .album {
+                min-height: 390px;
+            }
+
+            .album-cover {
+                width: 190px;
+                height: 190px;
+            }
+
+            .vinyl {
+                width: 125px;
+                height: 125px;
+            }
+
+            .access {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .album {
+                padding: 25px;
+
+                min-height: 350px;
+            }
+
+            .album-cover {
+                width: 160px;
+                height: 160px;
+            }
+
+            .vinyl {
+                width: 105px;
+                height: 105px;
+            }
+
+            .access {
+                padding: 30px 22px;
+            }
+
+            .access-header h2 {
+                font-size: 27px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background-note note-1">♪</div>
+    <div class="background-note note-2">♫</div>
+
+
+    <main class="player">
+
+        <!-- ==========================
+             ÁLBUM
+        =========================== -->
+
+        <section class="album">
+
+            <div class="brand">
+                Exemplo <span>login</span>
+            </div>
+
+
+            <div class="album-cover">
+
+                <div class="vinyl">
+
+                    <div class="vinyl-center">
+                        ♪
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="album-info">
+
+                <small>
+                    Music Academy
+                </small>
+
+                <h1>
+                    Your Sound.
+                </h1>
+
+                <p>
+                    Aprenda. Pratique. Crie.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================
+             LOGIN
+        =========================== -->
+
+        <section class="access">
+
+            <div class="access-header">
+
+                <small>
+                    Student Portal
+                </small>
+
+                <h2>
+                    Entre na sua área.
+                </h2>
+
+                <p>
+                    Continue sua jornada musical.
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+
+                <!-- TIPO DE CONTA -->
+
+                <div class="account-type">
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="account"
+                            value="Aluno"
+                            checked
+                        >
+
+                        <span class="type">
+                            🎓 Aluno
+                        </span>
+
+                    </label>
+
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="account"
+                            value="Professor"
+                        >
+
+                        <span class="type">
+                            🎼 Professor
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="input">
+
+                    <label>
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="seu@email.com"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- SENHA -->
+
+                <div class="input">
+
+                    <label>
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- OPÇÕES -->
+
+                <div class="options">
+
+                    <label class="remember">
+
+                        <input type="checkbox">
+
+                        Lembrar acesso
+
+                    </label>
+
+                    <a
+                        href="#"
+                        class="forgot"
+                    >
+                        Esqueci minha senha
+                    </a>
+
+                </div>
+
+
+                <!-- BOTÃO -->
+
+                <button
+                    type="submit"
+                    class="enter"
+                >
+                    CONTINUAR
+                </button>
+
+
+                <!-- ONDA SONORA -->
+
+                <div class="wave">
+
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+
+                </div>
+
+
+                <div
+                    class="message"
+                    id="message"
+                ></div>
+
+            </form>
+
+
+            <div class="footer">
+                ReDedev © 2026
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        const form =
+            document.getElementById("loginForm");
+
+        const message =
+            document.getElementById("message");
+
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const email =
+                    document.getElementById("email").value;
+
+                const password =
+                    document.getElementById("password").value;
+
+
+                if (!email || !password) {
+
+                    message.textContent =
+                        "Preencha todos os campos.";
+
+                    message.style.color =
+                        "#e36b6b";
+
+                    return;
+                }
+
+
+                const account =
+                    document.querySelector(
+                        'input[name="account"]:checked'
+                    ).value;
+
+
+                message.textContent =
+                    `Acesso de ${account} realizado!`;
+
+                message.style.color =
+                    "#a979ff";
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>

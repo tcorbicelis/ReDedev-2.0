@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VERITAS | LegalTech</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: #050507;
+            color: #fff;
+        }
+
+
+        /* =================================
+           FUNDO
+        ================================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 50% 50%,
+                    rgba(137, 25, 35, 0.18),
+                    transparent 35%
+                );
+        }
+
+        .grid {
+            position: absolute;
+            inset: 0;
+
+            background-image:
+                linear-gradient(
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.025) 1px,
+                    transparent 1px
+                );
+
+            background-size: 55px 55px;
+
+            transform: perspective(500px)
+                       rotateX(60deg)
+                       scale(1.5);
+
+            transform-origin: center bottom;
+
+            opacity: .4;
+        }
+
+
+        /* =================================
+           CÍRCULO CENTRAL
+        ================================= */
+
+        .orb {
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(179, 38, 50, .25);
+
+            box-shadow:
+                0 0 100px rgba(157, 27, 40, .08);
+
+            animation: pulse 5s infinite ease-in-out;
+        }
+
+        .orb::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 50px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,.06);
+        }
+
+        .orb::after {
+            content: "";
+
+            position: absolute;
+
+            inset: 120px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(179,38,50,.15);
+        }
+
+        @keyframes pulse {
+
+            50% {
+                transform:
+                    translate(-50%, -50%)
+                    scale(1.05);
+            }
+
+        }
+
+
+        /* =================================
+           ELEMENTOS DECORATIVOS
+        ================================= */
+
+        .symbol {
+            position: absolute;
+
+            color: rgba(255,255,255,.05);
+
+            font-family: Georgia, serif;
+
+            user-select: none;
+        }
+
+        .symbol.one {
+            top: 10%;
+            left: 8%;
+
+            font-size: 120px;
+        }
+
+        .symbol.two {
+            bottom: 5%;
+            right: 8%;
+
+            font-size: 180px;
+        }
+
+
+        /* =================================
+           CONTAINER
+        ================================= */
+
+        .container {
+            position: relative;
+            z-index: 5;
+
+            width: 950px;
+            min-height: 570px;
+
+            display: grid;
+
+            grid-template-columns: 55% 45%;
+
+            border: 1px solid rgba(255,255,255,.08);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            background: rgba(10,10,13,.86);
+
+            backdrop-filter: blur(20px);
+
+            box-shadow:
+                0 40px 100px rgba(0,0,0,.65);
+        }
+
+
+        /* =================================
+           LADO ESQUERDO
+        ================================= */
+
+        .hero {
+            position: relative;
+
+            padding: 55px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            border-right: 1px solid rgba(255,255,255,.06);
+        }
+
+        .brand {
+            font-size: 18px;
+
+            letter-spacing: 5px;
+
+            font-weight: bold;
+        }
+
+        .brand span {
+            color: #b72e3c;
+        }
+
+
+        .hero-content {
+            max-width: 470px;
+        }
+
+        .hero-content small {
+            color: #b72e3c;
+
+            letter-spacing: 4px;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+        }
+
+        .hero-content h1 {
+            margin-top: 18px;
+
+            font-family: Georgia, serif;
+
+            font-weight: normal;
+
+            font-size: 58px;
+
+            line-height: 1.02;
+        }
+
+        .hero-content h1 span {
+            color: #b72e3c;
+        }
+
+        .hero-content p {
+            margin-top: 25px;
+
+            color: #898991;
+
+            line-height: 1.7;
+
+            max-width: 430px;
+
+            font-size: 13px;
+        }
+
+
+        /* =================================
+           BALANÇA
+        ================================= */
+
+        .scales {
+            position: absolute;
+
+            right: 60px;
+            bottom: 70px;
+
+            width: 170px;
+            height: 180px;
+
+            opacity: .7;
+        }
+
+        .pole {
+            position: absolute;
+
+            width: 3px;
+            height: 130px;
+
+            background: #8d8d91;
+
+            left: 50%;
+            bottom: 25px;
+
+            transform: translateX(-50%);
+        }
+
+        .top {
+            position: absolute;
+
+            width: 100px;
+            height: 3px;
+
+            background: #8d8d91;
+
+            top: 25px;
+            left: 50%;
+
+            transform: translateX(-50%);
+        }
+
+        .center {
+            position: absolute;
+
+            width: 20px;
+            height: 20px;
+
+            border-radius: 50%;
+
+            background: #b72e3c;
+
+            left: 50%;
+            top: 17px;
+
+            transform: translateX(-50%);
+        }
+
+        .chain-left,
+        .chain-right {
+            position: absolute;
+
+            width: 2px;
+            height: 45px;
+
+            background: #77777c;
+
+            top: 26px;
+        }
+
+        .chain-left {
+            left: 35px;
+        }
+
+        .chain-right {
+            right: 35px;
+        }
+
+        .plate-left,
+        .plate-right {
+            position: absolute;
+
+            width: 65px;
+            height: 15px;
+
+            border-radius: 50%;
+
+            border: 2px solid #77777c;
+
+            bottom: 65px;
+        }
+
+        .plate-left {
+            left: 0;
+        }
+
+        .plate-right {
+            right: 0;
+        }
+
+
+        /* =================================
+           STATUS
+        ================================= */
+
+        .status {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            color: #606067;
+
+            font-size: 9px;
+
+            letter-spacing: 1px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #35a36c;
+
+            box-shadow:
+                0 0 10px rgba(53,163,108,.7);
+        }
+
+
+        /* =================================
+           LOGIN
+        ================================= */
+
+        .login {
+            padding: 55px;
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.015),
+                    transparent
+                );
+        }
+
+        .login-header {
+            margin-bottom: 30px;
+        }
+
+        .login-header small {
+            color: #b72e3c;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+
+            font-size: 9px;
+        }
+
+        .login-header h2 {
+            margin-top: 10px;
+
+            font-family: Georgia, serif;
+
+            font-weight: normal;
+
+            font-size: 31px;
+        }
+
+        .login-header p {
+            margin-top: 8px;
+
+            color: #686870;
+
+            font-size: 11px;
+        }
+
+
+        /* =================================
+           INPUT
+        ================================= */
+
+        .field {
+            margin-bottom: 17px;
+        }
+
+        .field label {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #96969d;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+        .field input {
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid #27272d;
+
+            border-radius: 5px;
+
+            outline: none;
+
+            background: #0d0d11;
+
+            color: white;
+
+            font-size: 12px;
+
+            transition: .3s;
+        }
+
+        .field input:focus {
+            border-color: #b72e3c;
+
+            box-shadow:
+                0 0 0 3px rgba(183,46,60,.08);
+        }
+
+
+        /* =================================
+           ACESSO
+        ================================= */
+
+        .access-options {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 7px;
+
+            margin-bottom: 18px;
+        }
+
+        .access-options input {
+            display: none;
+        }
+
+        .access-options label {
+            cursor: pointer;
+        }
+
+        .access {
+            display: block;
+
+            padding: 10px;
+
+            text-align: center;
+
+            border: 1px solid #25252b;
+
+            border-radius: 4px;
+
+            color: #696970;
+
+            font-size: 9px;
+
+            transition: .3s;
+        }
+
+        .access-options input:checked + .access {
+            border-color: #8f2734;
+
+            background: rgba(183,46,60,.08);
+
+            color: #d15b67;
+        }
+
+
+        /* =================================
+           OPÇÕES
+        ================================= */
+
+        .options {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin: 3px 0 20px;
+
+            font-size: 9px;
+        }
+
+        .remember {
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color: #686870;
+        }
+
+        .remember input {
+            accent-color: #b72e3c;
+        }
+
+        .forgot {
+            color: #a94450;
+
+            text-decoration: none;
+        }
+
+
+        /* =================================
+           BOTÃO
+        ================================= */
+
+        .button {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 5px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #8d2330,
+                    #b72e3c
+                );
+
+            color: white;
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+
+            cursor: pointer;
+
+            transition: .3s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px rgba(183,46,60,.2);
+        }
+
+
+        /* =================================
+           SEGURANÇA
+        ================================= */
+
+        .secure {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 20px;
+
+            color: #55555c;
+
+            font-size: 9px;
+        }
+
+        .secure-icon {
+            color: #b72e3c;
+
+            font-size: 13px;
+        }
+
+        .message {
+            height: 17px;
+
+            margin-top: 10px;
+
+            text-align: center;
+
+            font-size: 10px;
+        }
+
+        .footer {
+            margin-top: 25px;
+
+            text-align: center;
+
+            color: #414147;
+
+            font-size: 8px;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* =================================
+           RESPONSIVO
+        ================================= */
+
+        @media (max-width: 900px) {
+
+            body {
+                padding: 20px;
+
+                overflow: auto;
+            }
+
+            .container {
+                width: 100%;
+
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: 420px;
+
+                border-right: none;
+
+                border-bottom: 1px solid rgba(255,255,255,.06);
+            }
+
+            .scales {
+                right: 40px;
+            }
+
+            .login {
+                min-height: 500px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            body {
+                padding: 10px;
+            }
+
+            .hero {
+                padding: 35px;
+
+                min-height: 390px;
+            }
+
+            .hero-content h1 {
+                font-size: 40px;
+            }
+
+            .scales {
+                transform: scale(.7);
+
+                right: -10px;
+                bottom: 20px;
+            }
+
+            .login {
+                padding: 35px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background">
+
+        <div class="grid"></div>
+
+        <div class="orb"></div>
+
+        <div class="symbol one">
+            §
+        </div>
+
+        <div class="symbol two">
+            ⚖
+        </div>
+
+    </div>
+
+
+    <main class="container">
+
+
+        <!-- ==========================
+             HERO
+        =========================== -->
+
+        <section class="hero">
+
+            <div class="brand">
+                Exemplo <span>login</span>
+            </div>
+
+
+            <div class="hero-content">
+
+                <small>
+                    Legal Intelligence
+                </small>
+
+                <h1>
+                    Justiça.
+                    <span>Estratégia.</span>
+                    Resultado.
+                </h1>
+
+                <p>
+                    Uma nova experiência para acompanhar
+                    seus processos, documentos e informações
+                    jurídicas com segurança e inteligência.
+                </p>
+
+            </div>
+
+
+            <!-- BALANÇA -->
+
+            <div class="scales">
+
+                <div class="pole"></div>
+
+                <div class="top"></div>
+
+                <div class="center"></div>
+
+                <div class="chain-left"></div>
+
+                <div class="chain-right"></div>
+
+                <div class="plate-left"></div>
+
+                <div class="plate-right"></div>
+
+            </div>
+
+
+            <div class="status">
+
+                <span class="status-dot"></span>
+
+                SISTEMA OPERACIONAL
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================
+             LOGIN
+        =========================== -->
+
+        <section class="login">
+
+            <div class="login-header">
+
+                <small>
+                    Área restrita
+                </small>
+
+                <h2>
+                    Acesso seguro
+                </h2>
+
+                <p>
+                    Identifique-se para continuar.
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+
+                <!-- TIPO DE ACESSO -->
+
+                <div class="access-options">
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="access"
+                            value="Cliente"
+                            checked
+                        >
+
+                        <span class="access">
+                            CLIENTE
+                        </span>
+
+                    </label>
+
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="access"
+                            value="Advogado"
+                        >
+
+                        <span class="access">
+                            ADVOGADO
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="field">
+
+                    <label>
+                        Identificação
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="nome@email.com"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- SENHA -->
+
+                <div class="field">
+
+                    <label>
+                        Senha de acesso
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="options">
+
+                    <label class="remember">
+
+                        <input type="checkbox">
+
+                        Confiar neste dispositivo
+
+                    </label>
+
+                    <a
+                        href="#"
+                        class="forgot"
+                    >
+                        Recuperar acesso
+                    </a>
+
+                </div>
+
+
+                <button
+                    class="button"
+                    type="submit"
+                >
+                    ENTRAR NO SISTEMA
+                </button>
+
+
+                <div
+                    class="message"
+                    id="message"
+                ></div>
+
+            </form>
+
+
+            <div class="secure">
+
+                <span class="secure-icon">
+                    🔒
+                </span>
+
+                Conexão protegida · Ambiente confidencial
+
+            </div>
+
+
+            <div class="footer">
+                ReDedev © 2026
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        const form =
+            document.getElementById("loginForm");
+
+        const message =
+            document.getElementById("message");
+
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const email =
+                    document.getElementById("email").value;
+
+                const password =
+                    document.getElementById("password").value;
+
+
+                if (!email || !password) {
+
+                    message.textContent =
+                        "Preencha todos os campos.";
+
+                    message.style.color =
+                        "#d15b67";
+
+                    return;
+                }
+
+
+                const access =
+                    document.querySelector(
+                        'input[name="access"]:checked'
+                    ).value;
+
+
+                message.textContent =
+                    `Acesso de ${access} autorizado.`;
+
+                message.style.color =
+                    "#b72e3c";
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>

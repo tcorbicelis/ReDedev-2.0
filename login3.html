@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Maison Belle | Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            background: #f8f3f1;
+            color: #3d3030;
+        }
+
+        /* =========================
+           LADO ESQUERDO
+        ========================= */
+
+        .visual {
+            width: 55%;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    rgba(65, 45, 45, 0.25),
+                    rgba(65, 45, 45, 0.45)
+                ),
+                linear-gradient(
+                    135deg,
+                    #c9a6a0,
+                    #8e6865
+                );
+        }
+
+        /* Elementos decorativos */
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+        }
+
+        .circle.one {
+            width: 500px;
+            height: 500px;
+            right: -180px;
+            top: -120px;
+        }
+
+        .circle.two {
+            width: 350px;
+            height: 350px;
+            left: -150px;
+            bottom: -100px;
+        }
+
+        .visual-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: Georgia, serif;
+            font-size: 27px;
+            letter-spacing: 2px;
+            color: white;
+        }
+
+        .logo span {
+            font-style: italic;
+        }
+
+        .visual-text {
+            max-width: 500px;
+            margin-bottom: 40px;
+        }
+
+        .visual-text small {
+            display: block;
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #f8e9e4;
+            font-size: 11px;
+        }
+
+        .visual-text h1 {
+            font-family: Georgia, serif;
+            font-size: 55px;
+            line-height: 1.08;
+            font-weight: normal;
+            color: white;
+        }
+
+        .visual-text h1 span {
+            font-style: italic;
+        }
+
+        .visual-text p {
+            margin-top: 22px;
+            max-width: 430px;
+            color: #f4e5e1;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .services {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .service {
+            padding: 9px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 30px;
+            color: white;
+            font-size: 11px;
+        }
+
+
+        /* =========================
+           LOGIN
+        ========================= */
+
+        .login-area {
+            width: 45%;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px;
+            background: #fffaf8;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 390px;
+        }
+
+        .login-header {
+            margin-bottom: 35px;
+        }
+
+        .login-header small {
+            color: #a77d77;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 10px;
+        }
+
+        .login-header h2 {
+            margin-top: 10px;
+            font-family: Georgia, serif;
+            font-weight: normal;
+            font-size: 34px;
+            color: #3d3030;
+        }
+
+        .login-header p {
+            margin-top: 10px;
+            color: #9b8b88;
+            font-size: 14px;
+        }
+
+
+        /* CAMPOS */
+
+        .input-group {
+            margin-bottom: 22px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #6f5b58;
+            font-size: 12px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px 14px;
+
+            border: 1px solid #e2d3d0;
+            border-radius: 7px;
+
+            background: #fff;
+            color: #3d3030;
+
+            outline: none;
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .input-group input:focus {
+            border-color: #b48a84;
+
+            box-shadow:
+                0 0 0 3px rgba(180, 138, 132, 0.10);
+        }
+
+
+        /* OPÇÕES */
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin: 5px 0 25px;
+
+            font-size: 11px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #917e7a;
+        }
+
+        .remember input {
+            accent-color: #a77d77;
+        }
+
+        .forgot {
+            color: #a77d77;
+            text-decoration: none;
+        }
+
+        .forgot:hover {
+            text-decoration: underline;
+        }
+
+
+        /* BOTÃO */
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+
+            border: none;
+            border-radius: 7px;
+
+            background: #a77d77;
+            color: white;
+
+            font-size: 12px;
+            letter-spacing: 1px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #8f6863;
+            transform: translateY(-2px);
+        }
+
+
+        /* CADASTRO */
+
+        .register {
+            margin-top: 25px;
+            text-align: center;
+
+            color: #9b8b88;
+            font-size: 12px;
+        }
+
+        .register a {
+            color: #a77d77;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+
+        /* MENSAGEM */
+
+        .message {
+            height: 20px;
+            margin-top: 15px;
+
+            text-align: center;
+
+            font-size: 12px;
+        }
+
+
+        /* RODAPÉ */
+
+        .footer {
+            margin-top: 40px;
+
+            text-align: center;
+
+            color: #b7a6a2;
+
+            font-size: 9px;
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            body {
+                display: block;
+            }
+
+            .visual {
+                width: 100%;
+                min-height: 420px;
+            }
+
+            .visual-content {
+                padding: 35px;
+            }
+
+            .visual-text h1 {
+                font-size: 42px;
+            }
+
+            .login-area {
+                width: 100%;
+                min-height: 550px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .visual {
+                min-height: 380px;
+            }
+
+            .visual-content {
+                padding: 30px;
+            }
+
+            .visual-text h1 {
+                font-size: 35px;
+            }
+
+            .login-area {
+                padding: 35px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         ÁREA VISUAL
+    ========================= -->
+
+    <section class="visual">
+
+        <div class="circle one"></div>
+        <div class="circle two"></div>
+
+        <div class="visual-content">
+
+            <div class="logo">
+                Exemplo <span>login</span>
+            </div>
+
+            <div class="visual-text">
+
+                <small>
+                    Beauty · Care · Experience
+                </small>
+
+                <h1>
+                    Sua beleza,
+                    <span>nosso cuidado.</span>
+                </h1>
+
+                <p>
+                    Acesse sua conta para acompanhar
+                    seus agendamentos, serviços favoritos
+                    e novidades da Maison Belle.
+                </p>
+
+                <div class="services">
+
+                    <div class="service">
+                        Cabelo
+                    </div>
+
+                    <div class="service">
+                        Unhas
+                    </div>
+
+                    <div class="service">
+                        Estética
+                    </div>
+
+                    <div class="service">
+                        Maquiagem
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LOGIN
+    ========================= -->
+
+    <section class="login-area">
+
+        <div class="login-box">
+
+            <div class="login-header">
+
+                <small>
+                    Área do cliente
+                </small>
+
+                <h2>
+                    Bem-vinda de volta.
+                </h2>
+
+                <p>
+                    Entre para acessar seus agendamentos.
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="input-group">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="seu@email.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="password">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="options">
+
+                    <label class="remember">
+
+                        <input type="checkbox">
+
+                        Lembrar de mim
+
+                    </label>
+
+                    <a href="#" class="forgot">
+                        Esqueci minha senha
+                    </a>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+                    ENTRAR
+                </button>
+
+
+                <div
+                    class="message"
+                    id="message"
+                ></div>
+
+            </form>
+
+
+            <div class="register">
+
+                Ainda não possui uma conta?
+
+                <a href="#">
+                    Cadastre-se
+                </a>
+
+            </div>
+
+
+            <div class="footer">
+
+                ReDedev © 2026 ·
+                TODOS OS DIREITOS RESERVADOS
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <script>
+
+        const form =
+            document.getElementById("loginForm");
+
+        const message =
+            document.getElementById("message");
+
+
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const email =
+                document.getElementById("email").value;
+
+            const password =
+                document.getElementById("password").value;
+
+
+            if (!email || !password) {
+
+                message.textContent =
+                    "Preencha todos os campos.";
+
+                message.style.color = "#c95c5c";
+
+                return;
+            }
+
+
+            message.textContent =
+                "Login realizado com sucesso!";
+
+            message.style.color = "#a77d77";
+
+        });
+
+    </script>
+
+</body>
+</html>

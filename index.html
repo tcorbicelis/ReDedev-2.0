@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="assets/css/process.css">
     <link rel="stylesheet" href="assets/css/differentials.css">
     <link rel="stylesheet" href="assets/css/cta.css">
+    <link rel="stylesheet" href="assets/css/contact.css">
 </head>
 
 <body>
@@ -56,19 +57,32 @@
 
 </a>
 
-        <nav class="nav">
+       <!-- MENU HAMBÚRGUER -->
 
-            <a href="#inicio">Início</a>
-            <a href="#sobre">Quem Somos</a>
-            <a href="#servicos">Serviços</a>
-            <a href="#tecnologia">Tecnologias</a>
-            <a href="#diferenciais">Diferenciais</a>
+<button
+    class="menu-toggle"
+    id="menuToggle"
+    aria-label="Abrir menu"
+>
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
 
-        </nav>
+<nav class="nav" id="navMenu">
 
-        <a href="https://wa.me/5522997479689?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." class="btn-navbar" target="_blank">
-            Solicitar orçamento
-        </a>
+    <a href="#inicio">Home</a>
+
+       <!-- NOVA PÁGINA -->
+    <a href="logins.html">Logins</a>
+
+    <a href="https://wa.me/5522997479689?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento."
+       class="menu-orcamento"
+       target="_blank">
+        Solicitar orçamento
+    </a>
+
+</nav>
 
     </div>
 
@@ -700,6 +714,7 @@
     </main>
 
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/menu.js"></script>
 
 </body>
 

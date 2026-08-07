@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | ReDedev</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.12), transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(120, 0, 255, 0.12), transparent 30%),
+                #05070d;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        /* Linhas de fundo */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 1;
+            width: 400px;
+            padding: 40px;
+            border: 1px solid rgba(0, 255, 255, 0.25);
+            border-radius: 20px;
+            background: rgba(8, 12, 22, 0.88);
+            backdrop-filter: blur(15px);
+            box-shadow:
+                0 0 40px rgba(0, 255, 255, 0.08),
+                inset 0 0 30px rgba(255, 255, 255, 0.02);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            font-size: 32px;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        .logo span {
+            color: #00f0ff;
+        }
+
+        .logo p {
+            margin-top: 8px;
+            color: #7d899d;
+            font-size: 13px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #aeb8c8;
+            font-size: 14px;
+        }
+
+        .input-box {
+            position: relative;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 14px 45px 14px 15px;
+            border: 1px solid #202b3d;
+            border-radius: 10px;
+            outline: none;
+            background: #0a0f19;
+            color: #fff;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .input-box input:focus {
+            border-color: #00f0ff;
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.15);
+        }
+
+        .icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #66758c;
+            font-size: 17px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0 25px;
+            font-size: 13px;
+        }
+
+        .remember {
+            display: flex;
+            gap: 7px;
+            align-items: center;
+            color: #7d899d;
+        }
+
+        .remember input {
+            accent-color: #00f0ff;
+        }
+
+        .forgot {
+            color: #00f0ff;
+            text-decoration: none;
+        }
+
+        .forgot:hover {
+            text-decoration: underline;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #001014;
+            font-size: 15px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #00f0ff, #00ffa6);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.4);
+        }
+
+        .message {
+            min-height: 20px;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            color: #566276;
+            font-size: 12px;
+        }
+
+        .footer span {
+            color: #00f0ff;
+        }
+
+        /* Responsivo */
+        @media (max-width: 480px) {
+            .login-container {
+                width: 90%;
+                padding: 30px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <div class="logo">
+            <h1>Exemplo<span>login</span></h1>
+            <p>Acesse sua conta</p>
+        </div>
+
+        <form id="loginForm">
+
+            <div class="input-group">
+                <label for="email">E-mail</label>
+
+                <div class="input-box">
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="seu@email.com"
+                        required
+                    >
+
+                    <span class="icon">✉</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Senha</label>
+
+                <div class="input-box">
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+
+                    <span
+                        class="icon"
+                        id="togglePassword"
+                        style="cursor: pointer;"
+                    >
+                        ◉
+                    </span>
+                </div>
+            </div>
+
+            <div class="options">
+
+                <label class="remember">
+                    <input type="checkbox">
+                    Lembrar de mim
+                </label>
+
+                <a href="#" class="forgot">
+                    Esqueci minha senha
+                </a>
+
+            </div>
+
+            <button type="submit" class="login-btn">
+                ENTRAR
+            </button>
+
+            <div class="message" id="message"></div>
+
+        </form>
+
+        <div class="footer">
+            Desenvolvido por <span>ReDedev</span> • 2026
+        </div>
+
+    </div>
+
+    <script>
+
+        // Mostrar / ocultar senha
+        const togglePassword =
+            document.getElementById("togglePassword");
+
+        const password =
+            document.getElementById("password");
+
+        togglePassword.addEventListener("click", () => {
+
+            if (password.type === "password") {
+                password.type = "text";
+                togglePassword.textContent = "◉";
+            } else {
+                password.type = "password";
+                togglePassword.textContent = "◉";
+            }
+
+        });
+
+
+        // Simulação de login
+        const form =
+            document.getElementById("loginForm");
+
+        const message =
+            document.getElementById("message");
+
+        form.addEventListener("submit", (event) => {
+
+            event.preventDefault();
+
+            const email =
+                document.getElementById("email").value;
+
+            const passwordValue =
+                document.getElementById("password").value;
+
+            if (!email || !passwordValue) {
+
+                message.textContent =
+                    "Preencha todos os campos.";
+
+                message.style.color = "#ff5c5c";
+
+                return;
+            }
+
+            message.textContent =
+                "Login realizado com sucesso!";
+
+            message.style.color = "#00ffa6";
+
+        });
+
+    </script>
+
+</body>
+</html>
