@@ -79,6 +79,11 @@ body{
         font-size:2.5rem;
     }
 
+    .menu-hint {
+        display: flex;
+        align-items: center;
+    }
+
 }
 
 /* ===========================

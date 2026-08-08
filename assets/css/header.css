@@ -91,7 +91,6 @@ header {
     text-transform: uppercase;
 }
 
-
 /* =========================================
    MENU HAMBÚRGUER
 ========================================= */
@@ -142,6 +141,61 @@ header {
     background: #29d3ff;
 }
 
+/* ===========================
+   INDICAÇÃO DO MENU
+   =========================== */
+
+/* ===========================
+   INDICAÇÃO DO MENU
+   =========================== */
+
+.menu-hint {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    z-index: 1000;
+}
+
+.hint-text {
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.hint-arrow {
+    color: #d4af37;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    line-height: 1;
+
+margin-right: 50px;
+
+    animation: arrowMove 1.2s infinite ease-in-out;
+}
+
+@keyframes arrowMove {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+}
 
 /* =========================================
    MENU ABERTO
