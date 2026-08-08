@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Global Offshore | Login</title>
 
     <style>
+
+        /* ===========================
+           RESET
+           =========================== */
+
         * {
             margin: 0;
             padding: 0;
@@ -14,20 +25,31 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
         body {
             min-height: 100vh;
             display: flex;
             background: #07111d;
             color: #fff;
+            overflow-x: hidden;
         }
 
-        /* LADO ESQUERDO */
+
+        /* ===========================
+           LADO ESQUERDO
+           =========================== */
 
         .side {
             position: relative;
             width: 55%;
             min-height: 100vh;
             overflow: hidden;
+
             background:
                 linear-gradient(
                     rgba(4, 18, 31, 0.72),
@@ -40,311 +62,734 @@
                 );
         }
 
+
         .side::before {
             content: "";
             position: absolute;
+
             width: 600px;
             height: 600px;
+
             border: 1px solid rgba(212, 175, 55, 0.18);
             border-radius: 50%;
+
             top: 50%;
             left: 50%;
+
             transform: translate(-50%, -50%);
         }
+
 
         .side::after {
             content: "";
             position: absolute;
+
             width: 400px;
             height: 400px;
+
             border: 1px solid rgba(212, 175, 55, 0.12);
             border-radius: 50%;
+
             top: 50%;
             left: 50%;
+
             transform: translate(-50%, -50%);
         }
+
 
         .side-content {
             position: relative;
             z-index: 2;
+
             height: 100%;
+
             padding: 70px;
+
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
+
+        /* ===========================
+           BRAND
+           =========================== */
+
         .brand {
             position: absolute;
+
             top: 50px;
             left: 70px;
+
             font-size: 22px;
             font-weight: bold;
+
             letter-spacing: 2px;
         }
+
 
         .brand span {
             color: #d4af37;
         }
 
+
+        /* ===========================
+           BADGE
+           =========================== */
+
         .badge {
             width: fit-content;
+
             padding: 8px 15px;
+
             margin-bottom: 25px;
+
             border: 1px solid rgba(212, 175, 55, 0.4);
             border-radius: 30px;
+
             color: #d4af37;
+
             font-size: 11px;
             letter-spacing: 2px;
+
             text-transform: uppercase;
         }
 
+
+        /* ===========================
+           TEXTO
+           =========================== */
+
         .side h1 {
             max-width: 550px;
+
             font-size: 54px;
             line-height: 1.05;
+
             margin-bottom: 25px;
         }
+
 
         .side h1 span {
             color: #d4af37;
         }
 
+
         .side p {
             max-width: 500px;
+
             color: #9daaba;
+
             line-height: 1.7;
+
             font-size: 15px;
         }
 
+
+        /* ===========================
+           LOCALIZAÇÕES
+           =========================== */
+
         .locations {
             display: flex;
+
             gap: 30px;
+
             margin-top: 50px;
         }
 
+
         .location {
             padding-left: 15px;
+
             border-left: 2px solid #d4af37;
         }
 
+
         .location strong {
             display: block;
+
             font-size: 14px;
+
             margin-bottom: 5px;
         }
+
 
         .location small {
             color: #718096;
         }
 
 
-        /* LOGIN */
+        /* ===========================
+           LOGIN
+           =========================== */
 
         .login-area {
             width: 45%;
             min-height: 100vh;
+
             display: flex;
+
             justify-content: center;
             align-items: center;
+
             padding: 40px;
+
             background: #08131f;
         }
+
 
         .login-box {
             width: 100%;
             max-width: 410px;
         }
 
+
+        /* ===========================
+           CABEÇALHO LOGIN
+           =========================== */
+
         .login-header {
             margin-bottom: 35px;
         }
 
+
         .login-header small {
             color: #d4af37;
+
             letter-spacing: 2px;
+
             font-size: 11px;
+
             text-transform: uppercase;
         }
 
+
         .login-header h2 {
             margin-top: 10px;
+
             font-size: 30px;
         }
 
+
         .login-header p {
             margin-top: 10px;
+
             color: #687789;
+
             font-size: 14px;
         }
+
+
+        /* ===========================
+           INPUTS
+           =========================== */
 
         .input-group {
             margin-bottom: 22px;
         }
 
+
         .input-group label {
             display: block;
+
             margin-bottom: 9px;
+
             color: #b3bfcd;
+
             font-size: 13px;
         }
 
+
         .input-group input {
             width: 100%;
+
             padding: 15px;
+
             border: 1px solid #1d3042;
             border-radius: 5px;
+
             background: #0b1a29;
+
             color: #fff;
+
             outline: none;
+
             transition: 0.3s;
         }
 
+
         .input-group input:focus {
             border-color: #d4af37;
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.08);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(212, 175, 55, 0.08);
         }
+
+
+        /* ===========================
+           OPÇÕES
+           =========================== */
 
         .options {
             display: flex;
+
             justify-content: space-between;
             align-items: center;
+
             margin: 5px 0 25px;
+
             font-size: 12px;
         }
 
+
         .remember {
             display: flex;
+
             align-items: center;
+
             gap: 7px;
+
             color: #728094;
         }
+
 
         .remember input {
             accent-color: #d4af37;
         }
 
+
         .forgot {
             color: #d4af37;
+
             text-decoration: none;
         }
 
+
+        /* ===========================
+           BOTÃO
+           =========================== */
+
         .login-btn {
             width: 100%;
+
             padding: 16px;
+
             border: none;
             border-radius: 5px;
+
             background: #d4af37;
+
             color: #07111d;
+
             font-size: 13px;
+
             font-weight: bold;
+
             letter-spacing: 1px;
+
             cursor: pointer;
+
             transition: 0.3s;
         }
 
+
         .login-btn:hover {
             background: #e3c45c;
+
             transform: translateY(-2px);
         }
 
+
+        /* ===========================
+           SEGURANÇA
+           =========================== */
+
         .security {
             display: flex;
+
             align-items: center;
+
             gap: 10px;
+
             margin-top: 25px;
+
             padding: 13px;
+
             border: 1px solid #172839;
             border-radius: 5px;
+
             color: #657589;
+
             font-size: 11px;
         }
 
+
         .security-icon {
             color: #d4af37;
+
             font-size: 16px;
+
+            flex-shrink: 0;
         }
 
+
+        /* ===========================
+           MENSAGEM
+           =========================== */
+
         .message {
-            height: 20px;
+            min-height: 20px;
+
             margin-top: 15px;
+
             text-align: center;
+
             font-size: 12px;
         }
 
+
+        /* ===========================
+           FOOTER
+           =========================== */
+
         .footer {
             margin-top: 35px;
+
             text-align: center;
+
             color: #465568;
+
             font-size: 10px;
+
             letter-spacing: 1px;
+
+            line-height: 1.5;
         }
 
 
-        /* RESPONSIVO */
+        /* ===========================
+           TABLETS
+           =========================== */
 
         @media (max-width: 900px) {
 
             body {
                 display: block;
+
+                min-height: 100vh;
+
+                overflow-x: hidden;
             }
+
 
             .side {
                 width: 100%;
-                min-height: 420px;
+
+                min-height: auto;
             }
 
+
             .side-content {
-                padding: 40px;
+                min-height: 430px;
+
+                height: auto;
+
+                padding: 100px 40px 45px;
             }
+
 
             .brand {
                 top: 30px;
+
                 left: 40px;
             }
 
+
             .side h1 {
-                font-size: 40px;
+                max-width: 650px;
+
+                font-size: clamp(
+                    36px,
+                    7vw,
+                    48px
+                );
             }
+
+
+            .side p {
+                max-width: 650px;
+            }
+
 
             .locations {
                 margin-top: 30px;
+
+                flex-wrap: wrap;
+
+                gap: 25px;
             }
+
 
             .login-area {
                 width: 100%;
-                min-height: 550px;
+
+                min-height: auto;
+
+                padding: 60px 40px;
             }
+
+
+            .login-box {
+                max-width: 520px;
+            }
+
         }
 
-        @media (max-width: 500px) {
+
+        /* ===========================
+           CELULARES
+           =========================== */
+
+        @media (max-width: 600px) {
+
+            .side::before {
+                width: 360px;
+
+                height: 360px;
+            }
+
+
+            .side::after {
+                width: 250px;
+
+                height: 250px;
+            }
+
 
             .side-content {
-                padding: 30px;
+                min-height: auto;
+
+                padding: 90px 25px 40px;
             }
+
 
             .brand {
-                left: 30px;
+                top: 25px;
+
+                left: 25px;
+
+                font-size: 19px;
             }
+
+
+            .badge {
+                margin-bottom: 20px;
+
+                padding: 7px 12px;
+
+                font-size: 10px;
+            }
+
 
             .side h1 {
-                font-size: 34px;
+                font-size: clamp(
+                    32px,
+                    10vw,
+                    40px
+                );
+
+                line-height: 1.08;
+
+                margin-bottom: 18px;
             }
+
+
+            .side p {
+                font-size: 14px;
+
+                line-height: 1.6;
+            }
+
 
             .locations {
-                gap: 15px;
+                margin-top: 28px;
+
+                gap: 18px;
             }
 
-            .login-area {
-                padding: 30px 20px;
+
+            .location {
+                padding-left: 10px;
             }
+
+
+            .location strong {
+                font-size: 13px;
+            }
+
+
+            .location small {
+                font-size: 11px;
+            }
+
+
+            .login-area {
+                padding: 45px 20px;
+            }
+
+
+            .login-header {
+                margin-bottom: 28px;
+            }
+
+
+            .login-header h2 {
+                font-size: 27px;
+            }
+
+
+            .login-header p {
+                font-size: 13px;
+            }
+
+
+            .input-group {
+                margin-bottom: 19px;
+            }
+
+
+            .input-group input {
+                min-height: 50px;
+
+                padding: 14px;
+
+                /*
+                 Evita que o iPhone aumente
+                 automaticamente o zoom ao tocar
+                 no campo.
+                */
+                font-size: 16px;
+            }
+
+
+            .options {
+                gap: 15px;
+
+                align-items: flex-start;
+
+                flex-wrap: wrap;
+
+                margin-bottom: 22px;
+            }
+
+
+            .remember,
+            .forgot {
+                font-size: 12px;
+            }
+
+
+            .login-btn {
+                min-height: 50px;
+
+                padding: 15px;
+            }
+
+
+            .security {
+                align-items: flex-start;
+
+                line-height: 1.5;
+            }
+
+
+            .footer {
+                margin-top: 28px;
+
+                line-height: 1.5;
+            }
+
         }
+
+
+        /* ===========================
+           CELULARES MUITO PEQUENOS
+           =========================== */
+
+        @media (max-width: 380px) {
+
+            .side-content {
+                padding-left: 20px;
+
+                padding-right: 20px;
+            }
+
+
+            .brand {
+                left: 20px;
+            }
+
+
+            .side h1 {
+                font-size: 30px;
+            }
+
+
+            .locations {
+                display: grid;
+
+                grid-template-columns:
+                    1fr 1fr;
+
+                gap: 18px 12px;
+            }
+
+
+            .locations .location:last-child {
+                grid-column: 1 / -1;
+            }
+
+
+            .login-area {
+                padding: 40px 16px;
+            }
+
+
+            .login-header h2 {
+                font-size: 25px;
+            }
+
+
+            .options {
+                display: flex;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 12px;
+            }
+
+
+            .security {
+                font-size: 10px;
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- ÁREA INSTITUCIONAL -->
+
+    <!-- ===========================
+         ÁREA INSTITUCIONAL
+         =========================== -->
 
     <section class="side">
 
@@ -352,16 +797,19 @@
             Exemplo<span>login</span>
         </div>
 
+
         <div class="side-content">
 
             <div class="badge">
                 International Operations
             </div>
 
+
             <h1>
                 Business without
                 <span>borders.</span>
             </h1>
+
 
             <p>
                 Plataforma corporativa para gerenciamento
@@ -369,21 +817,45 @@
                 informações estratégicas.
             </p>
 
+
             <div class="locations">
 
                 <div class="location">
-                    <strong>Panama</strong>
-                    <small>Operations</small>
+
+                    <strong>
+                        Panama
+                    </strong>
+
+                    <small>
+                        Operations
+                    </small>
+
                 </div>
 
-                <div class="location">
-                    <strong>Dubai</strong>
-                    <small>Finance</small>
-                </div>
 
                 <div class="location">
-                    <strong>Singapore</strong>
-                    <small>Asia Pacific</small>
+
+                    <strong>
+                        Dubai
+                    </strong>
+
+                    <small>
+                        Finance
+                    </small>
+
+                </div>
+
+
+                <div class="location">
+
+                    <strong>
+                        Singapore
+                    </strong>
+
+                    <small>
+                        Asia Pacific
+                    </small>
+
                 </div>
 
             </div>
@@ -393,17 +865,26 @@
     </section>
 
 
-    <!-- LOGIN -->
+    <!-- ===========================
+         LOGIN
+         =========================== -->
 
     <section class="login-area">
 
         <div class="login-box">
 
+
             <div class="login-header">
 
-                <small>Secure Access</small>
+                <small>
+                    Secure Access
+                </small>
 
-                <h2>Welcome back.</h2>
+
+                <h2>
+                    Welcome back.
+                </h2>
+
 
                 <p>
                     Acesse o portal corporativo.
@@ -414,16 +895,19 @@
 
             <form id="loginForm">
 
+
                 <div class="input-group">
 
                     <label for="email">
                         Corporate Email
                     </label>
 
+
                     <input
                         type="email"
                         id="email"
                         placeholder="name@company.com"
+                        autocomplete="email"
                         required
                     >
 
@@ -436,10 +920,12 @@
                         Password
                     </label>
 
+
                     <input
                         type="password"
                         id="password"
                         placeholder="Enter your password"
+                        autocomplete="current-password"
                         required
                     >
 
@@ -450,13 +936,19 @@
 
                     <label class="remember">
 
-                        <input type="checkbox">
+                        <input
+                            type="checkbox"
+                        >
 
                         Remember this device
 
                     </label>
 
-                    <a href="#" class="forgot">
+
+                    <a
+                        href="#"
+                        class="forgot"
+                    >
                         Forgot password?
                     </a>
 
@@ -476,6 +968,7 @@
                     id="message"
                 ></div>
 
+
             </form>
 
 
@@ -484,6 +977,7 @@
                 <span class="security-icon">
                     ◈
                 </span>
+
 
                 <span>
                     Protected connection ·
@@ -500,6 +994,7 @@
 
             </div>
 
+
         </div>
 
     </section>
@@ -510,40 +1005,55 @@
         const form =
             document.getElementById("loginForm");
 
+
         const message =
             document.getElementById("message");
 
 
-        form.addEventListener("submit", function(event) {
+        form.addEventListener(
+            "submit",
+            function(event) {
 
-            event.preventDefault();
-
-            const email =
-                document.getElementById("email").value;
-
-            const password =
-                document.getElementById("password").value;
+                event.preventDefault();
 
 
-            if (!email || !password) {
+                const email =
+                    document.getElementById(
+                        "email"
+                    ).value;
+
+
+                const password =
+                    document.getElementById(
+                        "password"
+                    ).value;
+
+
+                if (!email || !password) {
+
+                    message.textContent =
+                        "Please complete all fields.";
+
+                    message.style.color =
+                        "#e05252";
+
+                    return;
+                }
+
 
                 message.textContent =
-                    "Please complete all fields.";
+                    "Access granted. Welcome back.";
 
-                message.style.color = "#e05252";
 
-                return;
+                message.style.color =
+                    "#d4af37";
+
             }
-
-
-            message.textContent =
-                "Access granted. Welcome back.";
-
-            message.style.color = "#d4af37";
-
-        });
+        );
 
     </script>
 
+
 </body>
+
 </html>
