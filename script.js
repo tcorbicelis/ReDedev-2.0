@@ -55,3 +55,63 @@ if (menu && nav) {
     }
   });
 }
+
+// Animações de entrada ao rolar a página.
+const reducedMotion = window.matchMedia(
+  "(prefers-reduced-motion: reduce)"
+);
+
+if (
+  "IntersectionObserver" in window &&
+  !reducedMotion.matches
+) {
+  const elements = document.querySelectorAll(`
+    .section-head,
+    .services article,
+    .about > div,
+    .steps article,
+    .stack,
+    .contact > .eyebrow,
+    .contact > h2,
+    .contact-bottom
+  `);
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.1
+    }
+  );
+
+  elements.forEach((element) => {
+    // Mantém visível o conteúdo que já está na tela.
+    const bounds = element.getBoundingClientRect();
+
+    if (
+      bounds.top < window.innerHeight &&
+      bounds.bottom > 0
+    ) {
+      return;
+    }
+
+    element.classList.add("reveal");
+    observer.observe(element);
+  });
+
+  reducedMotion.addEventListener("change", (event) => {
+    if (event.matches) {
+      elements.forEach((element) => {
+        element.classList.add("is-visible");
+      });
+
+      observer.disconnect();
+    }
+  });
+}
