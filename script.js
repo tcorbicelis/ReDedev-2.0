@@ -115,3 +115,117 @@ if (
     }
   });
 }
+
+// Cursor: ponto azul e círculo com acompanhamento suave.
+(() => {
+  const dot = document.querySelector(".cursor-dot");
+  const ring = document.querySelector(".cursor-ring");
+
+  if (!dot || !ring) return;
+
+  const desktopPointer = window.matchMedia(
+    "(hover: hover) and (pointer: fine)"
+  );
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let ringX = 0;
+  let ringY = 0;
+  let frameId = null;
+  let visible = false;
+
+  const interactiveSelector = [
+    "a",
+    "button",
+    "input",
+    "textarea",
+    "select",
+    "label",
+    "summary",
+    '[role="button"]'
+  ].join(", ");
+
+  function drawRing() {
+    if (!visible) return;
+
+    const ease = reducedMotion.matches ? 1 : 0.16;
+
+    ringX += (mouseX - ringX) * ease;
+    ringY += (mouseY - ringY) * ease;
+
+    ring.style.left = `${ringX}px`;
+    ring.style.top = `${ringY}px`;
+
+    frameId = requestAnimationFrame(drawRing);
+  }
+
+  function hideCursor() {
+    visible = false;
+    cancelAnimationFrame(frameId);
+    frameId = null;
+
+    document.body.classList.remove(
+      "cursor-visible",
+      "cursor-hover"
+    );
+  }
+
+  function updateCursorMode() {
+    hideCursor();
+
+    document.body.classList.toggle(
+      "custom-cursor",
+      desktopPointer.matches
+    );
+  }
+
+  document.addEventListener("pointermove", (event) => {
+    if (
+      !desktopPointer.matches ||
+      event.pointerType !== "mouse"
+    ) {
+      hideCursor();
+      return;
+    }
+
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+
+    dot.style.left = `${mouseX}px`;
+    dot.style.top = `${mouseY}px`;
+
+    document.body.classList.toggle(
+      "cursor-hover",
+      event.target instanceof Element &&
+        Boolean(event.target.closest(interactiveSelector))
+    );
+
+    if (!visible) {
+      visible = true;
+      ringX = mouseX;
+      ringY = mouseY;
+
+      document.body.classList.add("cursor-visible");
+      drawRing();
+    }
+  });
+
+  document.documentElement.addEventListener(
+    "pointerleave",
+    hideCursor
+  );
+
+  window.addEventListener("blur", hideCursor);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) hideCursor();
+  });
+
+  desktopPointer.addEventListener("change", updateCursorMode);
+
+  updateCursorMode();
+})();
