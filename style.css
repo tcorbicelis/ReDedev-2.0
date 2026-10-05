@@ -1121,3 +1121,83 @@ body {
     transition: none;
   }
 }
+
+/* Halo atrás do conteúdo */
+body {
+  isolation: isolate;
+}
+
+.mouse-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle,
+    rgba(85, 190, 217, 0.12),
+    rgba(138, 211, 151, 0.06) 35%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+.mouse-glow.is-active {
+  opacity: 1;
+}
+
+/* Luz localizada nas bordas dos cartões */
+@media (hover: hover) and (pointer: fine) {
+  .services article {
+    position: relative;
+  }
+
+  .services article::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+
+    background: radial-gradient(
+      240px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+      #55bed9,
+      #8ad397 35%,
+      transparent 75%
+    );
+
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+
+    transition: opacity 0.25s ease;
+  }
+
+  .services article:hover::after {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mouse-glow {
+    display: none;
+  }
+}
+
+.hero-art,
+.hero-art img {
+  background: transparent;
+}

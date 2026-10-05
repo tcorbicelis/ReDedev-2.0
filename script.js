@@ -229,3 +229,89 @@ if (
 
   updateCursorMode();
 })();
+
+// Halo e iluminação dos cartões.
+(() => {
+  const glow = document.querySelector(".mouse-glow");
+  const cards = document.querySelectorAll(".services article");
+
+  if (!glow) return;
+
+  const finePointer = window.matchMedia(
+    "(hover: hover) and (pointer: fine)"
+  );
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  let frameId = null;
+  let mouseX = 0;
+  let mouseY = 0;
+
+  function hideGlow() {
+    glow.classList.remove("is-active");
+    cancelAnimationFrame(frameId);
+    frameId = null;
+  }
+
+  document.addEventListener("pointermove", (event) => {
+    if (
+      !finePointer.matches ||
+      reducedMotion.matches ||
+      event.pointerType !== "mouse"
+    ) {
+      hideGlow();
+      return;
+    }
+
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+
+    if (frameId !== null) return;
+
+    frameId = requestAnimationFrame(() => {
+      glow.style.left = `${mouseX}px`;
+      glow.style.top = `${mouseY}px`;
+      glow.classList.add("is-active");
+      frameId = null;
+    });
+  });
+
+  cards.forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      if (
+        !finePointer.matches ||
+        event.pointerType !== "mouse"
+      ) {
+        return;
+      }
+
+      const bounds = card.getBoundingClientRect();
+
+      card.style.setProperty(
+        "--glow-x",
+        `${event.clientX - bounds.left}px`
+      );
+
+      card.style.setProperty(
+        "--glow-y",
+        `${event.clientY - bounds.top}px`
+      );
+    });
+  });
+
+  document.documentElement.addEventListener(
+    "pointerleave",
+    hideGlow
+  );
+
+  window.addEventListener("blur", hideGlow);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) hideGlow();
+  });
+
+  finePointer.addEventListener("change", hideGlow);
+  reducedMotion.addEventListener("change", hideGlow);
+})();
