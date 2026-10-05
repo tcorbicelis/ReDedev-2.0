@@ -796,3 +796,158 @@ footer > div:nth-child(2) {
     transition: none;
   }
 }
+
+/* Fundo com circuitos animados */
+
+body {
+  position: relative;
+  isolation: isolate;
+}
+
+.circuit-board {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      rgba(85, 190, 217, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(138, 211, 151, 0.035) 1px,
+      transparent 1px
+    );
+  background-size: 80px 80px;
+}
+
+.circuit {
+  position: absolute;
+  width: 280px;
+  height: 180px;
+  border-top: 1px solid rgba(85, 190, 217, 0.16);
+  border-right: 1px solid rgba(138, 211, 151, 0.16);
+  border-radius: 0 20px 0 0;
+}
+
+/* Pontos de conexão */
+
+.circuit::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(85, 190, 217, 0.5);
+  border-radius: 50%;
+  background: #030404;
+}
+
+/* Pulsos que percorrem as trilhas */
+
+.circuit::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #72d5df;
+  box-shadow:
+    0 0 8px rgba(85, 190, 217, 0.8),
+    0 0 20px rgba(138, 211, 151, 0.4);
+  offset-path: border-box;
+  offset-anchor: center;
+  animation: circuit-pulse 9s linear infinite;
+}
+
+.circuit-1 {
+  top: 12%;
+  left: -60px;
+}
+
+.circuit-2 {
+  top: 8%;
+  right: -90px;
+  transform: rotate(180deg);
+}
+
+.circuit-3 {
+  top: 45%;
+  left: 8%;
+  width: 190px;
+  height: 240px;
+  transform: rotate(90deg);
+}
+
+.circuit-4 {
+  top: 40%;
+  right: 3%;
+  width: 240px;
+  height: 200px;
+  transform: rotate(-90deg);
+}
+
+.circuit-5 {
+  bottom: 5%;
+  left: -80px;
+  transform: rotate(180deg);
+}
+
+.circuit-6 {
+  right: -60px;
+  bottom: 8%;
+}
+
+.circuit-2::after,
+.circuit-5::after {
+  animation-delay: -3s;
+  animation-duration: 12s;
+}
+
+.circuit-3::after,
+.circuit-6::after {
+  animation-delay: -6s;
+  animation-duration: 10s;
+}
+
+@keyframes circuit-pulse {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+
+  10%,
+  80% {
+    opacity: 0.75;
+  }
+
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+/* Menos elementos nas telas pequenas */
+
+@media (max-width: 720px) {
+  .circuit-board {
+    background-size: 60px 60px;
+  }
+
+  .circuit-3,
+  .circuit-4 {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .circuit::after {
+    animation: none;
+    opacity: 0.35;
+  }
+}
