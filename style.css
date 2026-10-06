@@ -1300,3 +1300,92 @@ body {
     rotate: none;
   }
 }
+
+/* Experiência de toque */
+@media (hover: none) and (pointer: coarse) {
+  .button,
+  #menu,
+  nav a {
+    min-height: 44px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: rgba(85, 190, 217, 0.15);
+  }
+
+  .button,
+  #menu {
+    transition:
+      scale 0.15s ease,
+      background-color 0.15s ease;
+  }
+
+  .button:active,
+  #menu:active {
+    scale: 0.97;
+  }
+
+  /* Evita que o efeito de hover permaneça após o toque */
+  .button:hover {
+    transform: none;
+    background: var(--brand-gradient);
+  }
+
+  .services article:hover {
+    transform: none;
+  }
+}
+
+/* Menu mobile com entrada suave */
+@media (max-width: 720px) {
+  header nav,
+  header nav.open {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  header nav {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      visibility 0.2s;
+  }
+
+  header nav.open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  header nav a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+
+  header nav a:active {
+    background: rgba(85, 190, 217, 0.12);
+    color: var(--white);
+  }
+
+  #menu {
+    min-width: 48px;
+    min-height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  header nav,
+  .button,
+  #menu {
+    transition: none;
+  }
+}
