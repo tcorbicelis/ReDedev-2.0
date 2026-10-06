@@ -1201,3 +1201,102 @@ body {
 .hero-art img {
   background: transparent;
 }
+
+/* Glassmorphism nos cartões de serviços */
+.services article {
+  background: rgba(12, 20, 24, 0.55);
+
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+
+  border: 1px solid rgba(160, 220, 225, 0.16);
+  border-radius: 16px;
+
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .services article:hover {
+    background: rgba(18, 32, 38, 0.65);
+    border-color: rgba(85, 190, 217, 0.45);
+    transform: translateY(-5px);
+  }
+}
+
+/* Etiquetas dentro dos cartões */
+.tags span {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(160, 220, 225, 0.14);
+  border-radius: 6px;
+}
+
+/* Menu mobile com vidro escuro */
+@media (max-width: 720px) {
+  header nav {
+    background: rgba(8, 15, 19, 0.88);
+
+    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter: blur(18px);
+
+    border-bottom: 1px solid rgba(160, 220, 225, 0.18);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Fundo alternativo para navegadores sem suporte ao desfoque */
+@supports not (
+  (backdrop-filter: blur(1px)) or
+  (-webkit-backdrop-filter: blur(1px))
+) {
+  .services article,
+  header nav {
+    background: #101b21;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services article {
+    transition: none;
+  }
+}
+
+/* Profundidade nos cartões */
+.services {
+  perspective: 1000px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .services article {
+    rotate: var(--tilt-axis, 1 0 0) var(--tilt-angle, 0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services article {
+    rotate: none;
+  }
+}
+
+/* Efeito 3D no botão de contato */
+.contact-bottom {
+  perspective: 1000px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contact-bottom .button {
+    rotate: var(--tilt-axis, 1 0 0) var(--tilt-angle, 0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-bottom .button {
+    rotate: none;
+  }
+}

@@ -315,3 +315,127 @@ if (
   finePointer.addEventListener("change", hideGlow);
   reducedMotion.addEventListener("change", hideGlow);
 })();
+
+// Inclinação suave dos cartões de serviços.
+(() => {
+  const cards = document.querySelectorAll(
+  ".services article, .contact-bottom .button"
+);
+
+  const finePointer = window.matchMedia(
+    "(hover: hover) and (pointer: fine)"
+  );
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  const states = [];
+
+  cards.forEach((card) => {
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let frameId = null;
+
+    function animate() {
+      currentX += (targetX - currentX) * 0.12;
+      currentY += (targetY - currentY) * 0.12;
+
+      const distance = Math.hypot(currentX, currentY);
+
+      if (distance > 0.001) {
+        card.style.setProperty(
+          "--tilt-axis",
+          `${-currentY / distance} ${currentX / distance} 0`
+        );
+
+        card.style.setProperty(
+          "--tilt-angle",
+          `${Math.min(distance, 1) * 4}deg`
+        );
+      } else {
+        card.style.setProperty("--tilt-angle", "0deg");
+      }
+
+      if (
+        Math.abs(targetX - currentX) +
+        Math.abs(targetY - currentY) > 0.001
+      ) {
+        frameId = requestAnimationFrame(animate);
+      } else {
+        frameId = null;
+      }
+    }
+
+    function startAnimation() {
+      if (frameId === null) {
+        frameId = requestAnimationFrame(animate);
+      }
+    }
+
+    function returnToCenter() {
+      targetX = 0;
+      targetY = 0;
+      startAnimation();
+    }
+
+    function reset() {
+      cancelAnimationFrame(frameId);
+      frameId = null;
+
+      targetX = targetY = currentX = currentY = 0;
+
+      card.style.removeProperty("--tilt-axis");
+      card.style.removeProperty("--tilt-angle");
+    }
+
+    card.addEventListener("pointermove", (event) => {
+      if (
+        !finePointer.matches ||
+        reducedMotion.matches ||
+        event.pointerType !== "mouse"
+      ) {
+        return;
+      }
+
+      const bounds = card.getBoundingClientRect();
+
+      targetX = Math.max(
+        -1,
+        Math.min(
+          1,
+          ((event.clientX - bounds.left) / bounds.width - 0.5) * 2
+        )
+      );
+
+      targetY = Math.max(
+        -1,
+        Math.min(
+          1,
+          ((event.clientY - bounds.top) / bounds.height - 0.5) * 2
+        )
+      );
+
+      startAnimation();
+    });
+
+    card.addEventListener("pointerleave", returnToCenter);
+
+    states.push({ reset, returnToCenter });
+  });
+
+  function resetAll() {
+    states.forEach((state) => state.reset());
+  }
+
+  finePointer.addEventListener("change", resetAll);
+  reducedMotion.addEventListener("change", resetAll);
+
+  window.addEventListener("blur", resetAll);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) resetAll();
+  });
+})();
