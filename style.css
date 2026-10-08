@@ -1389,3 +1389,130 @@ body {
     transition: none;
   }
 }
+
+/* Apresentação do ReMind */
+.remind {
+  padding-top: 30px;
+}
+
+.remind-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 48px;
+  padding: 48px;
+
+  background: rgba(10, 17, 30, 0.6);
+  border: 1px solid rgba(85, 190, 217, 0.2);
+  border-radius: 20px;
+
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.remind-art {
+  min-width: 0;
+}
+
+.remind-art img {
+  display: block;
+  width: 100%;
+  max-width: 380px;
+  height: auto;
+  margin: auto;
+}
+
+.remind-copy {
+  min-width: 0;
+}
+
+.remind-copy .eyebrow {
+  margin-bottom: 16px;
+  color: #70d8f3;
+}
+
+.remind-copy h2 {
+  font-size: clamp(44px, 5vw, 68px);
+  letter-spacing: -2px;
+}
+
+.remind-description {
+  max-width: 450px;
+  margin: 24px 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.remind-status {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid rgba(112, 216, 243, 0.25);
+  border-radius: 30px;
+  background: rgba(85, 190, 217, 0.06);
+  color: #a4e5f5;
+  font-size: 14px;
+}
+
+@media (max-width: 720px) {
+  .remind-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 28px;
+  }
+
+  .remind-art img {
+    max-width: 260px;
+  }
+
+  .remind-description {
+    font-size: 16px;
+  }
+}
+
+@supports not (
+  (backdrop-filter: blur(1px)) or
+  (-webkit-backdrop-filter: blur(1px))
+) {
+  .remind-card {
+    background: #0c1422;
+  }
+}
+
+.remind-name {
+  color: #fff;
+}
+
+.remind-name span {
+  background: linear-gradient(120deg, #27e5eb, #008cff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.remind-labels {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.remind-platform {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid rgba(112, 216, 243, 0.25);
+  border-radius: 30px;
+  background: rgba(85, 190, 217, 0.06);
+  color: #a4e5f5;
+  font-size: 14px;
+}
+
+.remind-platform svg {
+  flex-shrink: 0;
+}
