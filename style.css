@@ -1543,3 +1543,13 @@ body {
     filter: none;
   }
 }
+
+.button {
+  gap: 8px;
+}
+
+.whatsapp-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
