@@ -1516,3 +1516,30 @@ body {
 .remind-platform svg {
   flex-shrink: 0;
 }
+
+/* Pulsação lenta e contínua */
+/* Pulsação contínua com brilho */
+.remind-art img {
+  transform-origin: center;
+  animation: remind-pulse 4s ease-in-out infinite;
+}
+
+@keyframes remind-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 6px rgba(0, 180, 255, 0.15));
+  }
+
+  50% {
+    transform: scale(1.09);
+    filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.5));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .remind-art img {
+    animation: none;
+    transform: none;
+    filter: none;
+  }
+}
