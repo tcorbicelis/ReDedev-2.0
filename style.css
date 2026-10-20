@@ -1553,3 +1553,59 @@ body {
   height: 20px;
   flex-shrink: 0;
 }
+
+/* Vídeo dentro do card ReMind */
+.remind-video {
+  grid-column: 1 / -1;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(85, 190, 217, 0.2);
+  border-radius: 14px;
+  background: #000;
+}
+
+.remind-video video {
+  display: block;
+  width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+}
+
+@media (max-width: 720px) {
+  .remind-video {
+    border-radius: 10px;
+  }
+
+  .remind-video video {
+    max-height: 450px;
+  }
+}
+
+/* Vídeo vertical centralizado no card */
+.remind-video {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.remind-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+}
+
+@media (max-width: 720px) {
+  .remind-video {
+    max-width: 340px;
+    border-radius: 10px;
+  }
+
+  .remind-video video {
+    max-height: none;
+  }
+}
