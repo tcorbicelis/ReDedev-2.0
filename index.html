@@ -20,6 +20,31 @@
 </head>
 
 <body>
+
+  <!-- Vinheta de abertura -->
+<div
+  class="site-intro"
+  id="site-intro"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Vinheta de abertura da ReDedev"
+  hidden
+>
+  <video
+    id="intro-video"
+    muted
+    playsinline
+    preload="none"
+    aria-label="Vinheta da ReDedev"
+  >
+    <source src="./vinheta.mp4" type="video/mp4">
+  </video>
+
+  <button class="intro-skip" id="intro-skip" type="button">
+    Pular vinheta
+  </button>
+</div>
+
   <!-- Circuitos decorativos -->
   <div class="circuit-board" aria-hidden="true">
     <span class="circuit circuit-1"></span>

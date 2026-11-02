@@ -439,3 +439,183 @@ if (
     if (document.hidden) resetAll();
   });
 })();
+
+// Vinheta de abertura: uma vez por aba/sessão.
+(() => {
+  const intro = document.querySelector("#site-intro");
+  const video = document.querySelector("#intro-video");
+  const skip = document.querySelector("#intro-skip");
+
+  if (!intro || !video || !skip) return;
+
+  const storageKey = "rededev-intro-v1";
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+  let alreadySeen = false;
+
+  try {
+    alreadySeen = sessionStorage.getItem(storageKey) === "seen";
+  } catch {
+    // O site funciona mesmo com armazenamento bloqueado.
+  }
+
+  if (alreadySeen || reducedMotion.matches) return;
+
+  const previousFocus = document.activeElement;
+
+  // Torna o conteúdo atrás da vinheta temporariamente inativo.
+  const backgroundElements = [...document.body.children]
+    .filter((element) => element !== intro)
+    .map((element) => ({
+      element,
+      wasInert: element.inert
+    }));
+
+  let finished = false;
+  let startupTimer;
+  let playbackTimer;
+
+  function markAsSeen() {
+    try {
+      sessionStorage.setItem(storageKey, "seen");
+    } catch {
+      // Armazenamento opcional.
+    }
+  }
+
+  function closeIntro() {
+    if (finished) return;
+    finished = true;
+
+    clearTimeout(startupTimer);
+    clearTimeout(playbackTimer);
+
+    video.pause();
+    intro.hidden = true;
+
+    document.body.classList.remove("intro-playing");
+
+    backgroundElements.forEach(({ element, wasInert }) => {
+      element.inert = wasInert;
+    });
+
+    document.removeEventListener("keydown", handleKeydown);
+    reducedMotion.removeEventListener("change", handleMotionChange);
+
+    if (
+      previousFocus instanceof HTMLElement &&
+      previousFocus !== document.body &&
+      previousFocus.isConnected
+    ) {
+      previousFocus.focus({ preventScroll: true });
+    } else {
+      document.querySelector(".brand")?.focus({
+        preventScroll: true
+      });
+    }
+  }
+
+  function handleKeydown(event) {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeIntro();
+    }
+
+    // O botão Pular é o único controle da vinheta.
+    if (event.key === "Tab") {
+      event.preventDefault();
+      skip.focus();
+    }
+  }
+
+  function handleMotionChange(event) {
+    if (event.matches) closeIntro();
+  }
+
+  intro.hidden = false;
+  document.body.classList.add("intro-playing");
+
+  backgroundElements.forEach(({ element }) => {
+    element.inert = true;
+  });
+
+  skip.focus({ preventScroll: true });
+
+  skip.addEventListener("click", closeIntro);
+  video.addEventListener("ended", closeIntro);
+  video.addEventListener("error", closeIntro);
+
+  // Libera o site se o arquivo estiver ausente ou não carregar.
+  video.querySelector("source")?.addEventListener(
+    "error",
+    closeIntro
+  );
+
+  video.addEventListener(
+    "playing",
+    () => {
+      clearTimeout(startupTimer);
+      markAsSeen();
+    },
+    { once: true }
+  );
+
+  document.addEventListener("keydown", handleKeydown);
+  reducedMotion.addEventListener("change", handleMotionChange);
+
+  // Evita deixar o visitante preso na abertura.
+  startupTimer = setTimeout(closeIntro, 6000);
+  playbackTimer = setTimeout(closeIntro, 20000);
+
+  video.muted = true;
+
+  video.play().catch(closeIntro);
+})();
+
+function closeIntro() {
+  if (finished) return;
+  finished = true;
+
+  clearTimeout(startupTimer);
+  clearTimeout(playbackTimer);
+
+  document.removeEventListener("keydown", handleKeydown);
+  reducedMotion.removeEventListener("change", handleMotionChange);
+
+  // Mantém o último quadro enquanto a vinheta desaparece.
+  video.pause();
+
+  function finishClosing() {
+    intro.hidden = true;
+    intro.classList.remove("is-closing");
+
+    document.body.classList.remove("intro-playing");
+
+    backgroundElements.forEach(({ element, wasInert }) => {
+      element.inert = wasInert;
+    });
+
+    if (
+      previousFocus instanceof HTMLElement &&
+      previousFocus !== document.body &&
+      previousFocus.isConnected
+    ) {
+      previousFocus.focus({ preventScroll: true });
+    } else {
+      document.querySelector(".brand")?.focus({
+        preventScroll: true
+      });
+    }
+  }
+
+  if (reducedMotion.matches) {
+    finishClosing();
+    return;
+  }
+
+  intro.classList.add("is-closing");
+
+  setTimeout(finishClosing, 800);
+}
