@@ -1609,3 +1609,8 @@ body {
     max-height: none;
   }
 }
+
+/* Destaque para o serviço de edição de vídeos */
+.services .service-video {
+  grid-column: 1 / -1;
+}
