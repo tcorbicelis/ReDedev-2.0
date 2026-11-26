@@ -21,30 +21,6 @@
 
 <body>
 
-  <!-- Vinheta de abertura -->
-<div
-  class="site-intro"
-  id="site-intro"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Vinheta de abertura da ReDedev"
-  hidden
->
-  <video
-    id="intro-video"
-    muted
-    playsinline
-    preload="none"
-    aria-label="Vinheta da ReDedev"
-  >
-    <source src="./vinheta.mp4" type="video/mp4">
-  </video>
-
-  <button class="intro-skip" id="intro-skip" type="button">
-    Pular vinheta
-  </button>
-</div>
-
   <!-- Circuitos decorativos -->
   <div class="circuit-board" aria-hidden="true">
     <span class="circuit circuit-1"></span>
@@ -63,11 +39,12 @@
       ReDedev
     </a>
 
-    <nav aria-label="Navegação principal">
-      <a href="#servicos">O que fazemos</a>
-      <a href="#sobre">O estúdio</a>
-      <a href="#processo">Como trabalhamos</a>
-    </nav>
+<nav aria-label="Navegação principal">
+  <a href="#servicos">O que fazemos</a>
+  <a href="#sobre">O estúdio</a>
+  <a href="#processo">Como trabalhamos</a>
+  <a href="./remind/index.html">ReMind</a>
+</nav>
 
     <a
       class="button small"
@@ -371,19 +348,6 @@
           Em desenvolvimento
         </span>
       </div>
-    </div>
-
-    <!-- Vídeo: permanece dentro do mesmo card -->
-    <div class="remind-video">
-      <video
-        controls
-        playsinline
-        preload="metadata"
-        aria-label="Vídeo de apresentação do ReMind"
-      >
-        <source src="./video teste-2.mp4" type="video/mp4">
-        Seu navegador não suporta este vídeo.
-      </video>
     </div>
   </div>
 </section>
